@@ -1031,8 +1031,15 @@ function os_update_7056() {
 }
 
 /**
- * Install os_node_form module
+ * Adding day to the os_date_abbreviated format
  */
 function os_update_7057() {
+  variable_set('date_format_os_date_abbreviated', 'D M j, g:ia');
+}
+
+/**
+ * Install os_node_form module
+ */
+function os_update_7058() {
   module_enable(array('os_node_form'));
 }
