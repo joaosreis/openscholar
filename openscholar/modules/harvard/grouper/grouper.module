@@ -202,7 +202,6 @@ function grouper_user_login(&$edit, $account) {
   if (!$huid) {
     return;
   }
-
   $groups = grouper_groups_for_huid($huid, 'groups');
 
   if ($groups !== FALSE) {
