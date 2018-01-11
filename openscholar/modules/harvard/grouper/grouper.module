@@ -196,8 +196,7 @@ function grouper_user_login(&$edit, $account) {
     return;
   }
   // get the pin of the user's account
-  //$huid = pinserver_authenticate_get_user_huid($account->uid);
-  $huid = 0;
+  $huid = pinserver_authenticate_get_user_huid($account->uid);
   watchdog('grouper', "HUID for user account '{$account->uid}': $huid.");
 
   $groups = grouper_groups_for_huid($huid, 'groups');
