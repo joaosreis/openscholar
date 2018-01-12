@@ -44,6 +44,7 @@ function os_books_get_root($node, $level = 0) {
  * Takes any node in a book tree and builds the entirety of that tree.
  */
 function os_books_build_tree($node, $flatten = FALSE) {
+  dsm($node);
   $root = os_books_get_root($node);
   static $building = array();
 
@@ -117,6 +118,7 @@ function os_books_build_toc($node, $style = 'partial', $separate = FALSE) {
  * Recursive function to collect the data array from the book.
  */
 function _os_books_build_tree_recursive($tree, $flatten = FALSE) {
+
   if (!is_array($tree)) {
     $tree = array($tree);
   }
@@ -154,6 +156,7 @@ function _os_books_build_tree_recursive($tree, $flatten = FALSE) {
 }
 
 function os_books_node_view($node, $view_mode) {
+  dsm($node);
   if ($view_mode == 'full') {
     if ($node->type == 'book' && isset($node->book) && $node->book) {
       if (variable_get('os_books_swap_enabled', FALSE)) {
@@ -173,7 +176,7 @@ function os_books_node_view($node, $view_mode) {
           $node->content['#attached']['js'][] = drupal_get_path('module', 'os_books').'/os_books.js';
         }
       }
-
+      dsm($node->content['book_navigation']);
       // Unset the book navigation links.
       if (module_exists('book') && book_type_is_allowed($node->type)) {
         unset($node->content['book_navigation']);
