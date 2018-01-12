@@ -16,7 +16,6 @@ function os_breadcrumbs_build_breadcrumbs() {
 
   dsm($menu_active_trail);
   $item = menu_get_item();
-
   if(empty($menu_object)) {
     // Check for taxonomy.
     if($path = _os_breadcrumbs_check_taxonomy($item)) {
@@ -41,7 +40,7 @@ function os_breadcrumbs_build_breadcrumbs() {
         $links = _os_breadcrumbs_build_app_breadcrumb($menu_active_trail);
     }
   }
-
+  dsm($links);
   return $links;
 }
 
@@ -428,6 +427,8 @@ function _os_breadcrumbs_node_breadcrumbs($node) {
           $links = array_merge($links, $parent_links);
         }
       }
+      dsm($parent_links);
+      dsm($links);
       // Traversing a book for breadcrumbs had issues separating the parents.
       // Orig using book_get_flat_menu, but that returned incorrect parents in certain use cases.
       // This method uses the mlid's stored in the p1-p9 elements of the node->book array.
