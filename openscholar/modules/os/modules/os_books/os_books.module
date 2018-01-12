@@ -149,7 +149,7 @@ function _os_books_build_tree_recursive($tree, $flatten = FALSE) {
   }
   // Change the path back.
   $_GET['q'] = $orig_path;
-
+  dsm($output[$nid]['breadcrumb']);
   return $output;
 }
 
