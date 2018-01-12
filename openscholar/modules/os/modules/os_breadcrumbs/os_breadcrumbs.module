@@ -32,6 +32,7 @@ function os_breadcrumbs_build_breadcrumbs() {
       case 'page':
       case 'book':
         $links = _os_breadcrumbs_build_subsection_breadcrumb($menu_active_trail);
+        dsm($links);
         break;
       case 'class_material':
       case 'software_release':
@@ -353,6 +354,7 @@ function _os_breadcrumbs_build_subsection_breadcrumb($menu_active_trail) {
       $links[$menu['href']] = l(strtoupper($short_title), $menu['href']);
     }
   }
+  dsm($links);
   return $links;
 }
 
@@ -468,7 +470,6 @@ function _os_breadcrumbs_node_breadcrumbs($node) {
         //$node_type = _os_breadcrumbs_get_content_type_title($node->type) !=FALSE ? _os_breadcrumbs_get_content_type_title($node->type) : $node->type;
         // Parent breadcrumbs.
         $short_parent_title = _os_breadcrumbs_shorten_title($node_type);
-        dsm($short_parent_title);
         $links[] = l(strtoupper($short_parent_title),$node_url);
         // Last breadcrumb item.
         $short_title = _os_breadcrumbs_shorten_title($node->title);
@@ -477,7 +478,6 @@ function _os_breadcrumbs_node_breadcrumbs($node) {
       }
     }
   }
-  dsm($links);
   return $links;
 }
 
@@ -581,6 +581,7 @@ function _os_breadcrumbs_check_custom_title($path) {
  *  The path of the app.
  */
 function _os_breadcrumbs_check_parents($path, $max_parents = null) {
+
   // Load the menu file.
   ctools_include('menu','os');
 
@@ -625,7 +626,6 @@ function _os_breadcrumbs_check_parents($path, $max_parents = null) {
       $links[$parent_link['link_path']] = l(strtoupper($parent_link['title']), $parent_link['link_path']);
     }
   }
-
   return $links;
 }
 
@@ -669,7 +669,6 @@ function os_breadcrumbs_preprocess_page(&$variables) {
   // Global settings for displaying/hiding breadcrumbs.
   if (variable_get('os_breadcrumbs_show_breadcrumbs', 1)) {
     $breadcrumb = os_breadcrumbs_setup_breadcrumbs(os_breadcrumbs_build_breadcrumbs());
-    dsm($breadcrumb);
     $variables['breadcrumb'] = $breadcrumb;
   }
 }
