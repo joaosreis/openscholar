@@ -42,6 +42,7 @@ class os_boxes_breadcrumbs extends os_boxes_default {
   }
 
   public function render() {
+    
     if (module_exists('vsite') && !vsite_get_vsite()) {
       return;
     }
@@ -58,6 +59,8 @@ class os_boxes_breadcrumbs extends os_boxes_default {
       3 => '&#124;',
       4 => '-',
     );
+    watchdog('breadcrumbs_options','<pre>'.print_r($breadcrumbs_options,TRUE).'</pre>');
+
     $space = spaces_get_space();
     // Get URL arguments.
     $arguments = explode('/', request_uri());
@@ -95,6 +98,7 @@ class os_boxes_breadcrumbs extends os_boxes_default {
 
       // Check for sub-sections.
       if ($node = menu_get_object()) {
+        dsm($node);
         $current_title = $node->title;
       	// only pages can have section nav
         if ($node->type == 'page' && isset($node->book['bid'])) {
