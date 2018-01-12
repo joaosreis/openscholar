@@ -54,14 +54,6 @@ function os_breadcrumbs_build_breadcrumbs() {
         if ($link['in_active_trail']) {
           // Add the link to the trail, unless it links to its parent.
           if (!($link['type'] & MENU_LINKS_TO_PARENT)) {
-            // The menu tree for the active trail may contain additional links
-            // that have not been translated yet, since they contain dynamic
-            // argument placeholders (%). Such links are not contained in regular
-            // menu trees, and have only been loaded for the additional
-            // translation that happens here, so as to be able to display them in
-            // the breadcrumb for the current page.
-            // @see _menu_tree_check_access()
-            // @see _menu_link_translate()
             if (strpos($link['href'], '%') !== FALSE) {
               _menu_link_translate($link, TRUE);
             }
@@ -71,6 +63,7 @@ function os_breadcrumbs_build_breadcrumbs() {
           }
           $tree = $curr['below'] ? $curr['below'] : array();
         }
+        dsm(each($tree));
         list($key, $curr) = each($tree);
       }
       // Make sure the current page is in the trail to build the page title, by
@@ -81,7 +74,7 @@ function os_breadcrumbs_build_breadcrumbs() {
         $trail[] = $preferred_link;
       }
     }
-    dsm($trail);
+    $menu_active_trail = $trail;
 //////////////////////////////
 
 
