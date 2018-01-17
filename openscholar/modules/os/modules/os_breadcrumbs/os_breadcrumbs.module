@@ -31,6 +31,7 @@ function os_breadcrumbs_build_breadcrumbs() {
       case 'page':
       case 'book':
         $links = _os_breadcrumbs_build_subsection_breadcrumb($menu_active_trail);
+        dsm($links);
         break;
       case 'class_material':
       case 'software_release':
